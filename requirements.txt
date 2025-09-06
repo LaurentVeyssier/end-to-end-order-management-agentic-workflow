@@ -1,0 +1,11 @@
+pandas==2.2.3
+typing==3.7.4.3
+openai==1.106.1  ##1.76.0
+SQLAlchemy==2.0.40
+python-dotenv==1.1.0
+rich
+ipykernel
+ipywidgets
+smolagents[openai]
+jupyter
+pydantic-ai==1.0.1 

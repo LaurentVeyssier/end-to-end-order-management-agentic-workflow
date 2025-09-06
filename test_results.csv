@@ -1,0 +1,21 @@
+request_id,request_date,cash_balance,inventory_value,response
+1,2025-04-01,45124.7,4875.3,Your order ORD-0001 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 65.0 credits. You can pick up your supplies starting 2025-04-01. Additional comment: None
+2,2025-04-03,45124.7,4875.3,Unfortunately we cannot validate your order. 'streamers are not inventory items; balloons are not inventory items'
+3,2025-04-04,45124.7,4875.3,Unfortunately we cannot validate your order. 'printer paper is not an inventory item'
+4,2025-04-05,45183.6,4816.4,Your order ORD-0002 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 87.5 credits. You can pick up your supplies starting 2025-04-05. Additional comment: ''
+5,2025-04-05,45183.6,4816.4,Unfortunately we cannot validate your order. 'Rolls of washi tape are not inventory items'
+6,2025-04-06,45183.6,4816.4,Unfortunately we cannot validate your order. 'Colored construction paper is not a specific inventory item.'
+7,2025-04-07,45183.6,4816.4,Unfortunately we cannot validate your order. 'Matte A3 paper is not an inventory item; no equivalent found.'
+8,2025-04-07,45183.6,4816.4,Unfortunately we cannot validate your order. 'A4 recycled paper is not an inventory item'
+9,2025-04-07,45183.6,4816.4,Unfortunately we cannot validate your order. 'envelopes are not inventory items'
+13,2025-04-08,45183.6,4816.4,Your order ORD-0003 with requested delivery date 2025-04-10 is confirmed. Total price for this order is 55.0 credits. You can pick up your supplies starting 2025-04-10. Additional comment: None
+12,2025-04-08,45183.6,4816.4,"Unfortunately we cannot validate your order. '100 paper napkins are not inventory items, replaced with paper plates'"
+10,2025-04-08,45231.6,4768.4,Your order ORD-0004 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 145.0 credits. You can pick up your supplies starting 2025-04-12. Additional comment: None
+11,2025-04-08,45231.6,4768.4,Your order ORD-0005 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 115.0 credits. You can pick up your supplies starting 2025-04-12. Additional comment: ''
+14,2025-04-09,45286.1,4713.9,Your order ORD-0006 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 525.0 credits. You can pick up your supplies starting 2025-04-13. Additional comment: ''
+15,2025-04-12,45286.1,4713.9,Your order ORD-0007 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 1075.0 credits. You can pick up your supplies starting 2025-04-15. Additional comment: ''
+16,2025-04-13,45286.1,4713.9,Unfortunately we cannot validate your order. 'Poster board is not an inventory item'
+17,2025-04-14,45286.1,4713.9,Unfortunately we cannot validate your order. 'Table napkins and biodegradable paper cups are not inventory items'
+18,2025-04-14,45349.3,4650.700000000001,Your order ORD-0008 with requested delivery date 2025-04-15 is confirmed. Total price for this order is 495.0 credits. You can pick up your supplies starting 2025-04-15. Additional comment: None
+19,2025-04-15,45349.3,4650.700000000001,Unfortunately we cannot validate your order. 'A3 matte paper is not an inventory item'
+20,2025-04-17,45349.3,4650.700000000001,Unfortunately we cannot validate your order. 'Tickets are not inventory items'
