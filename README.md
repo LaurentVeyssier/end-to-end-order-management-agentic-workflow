@@ -17,6 +17,9 @@
 - Improvements and next steps
 - How to run (Windows, UV)
 
+UPDATE: 
+- improved agentic workflow using pydantic-ai SDK in place of smolagents + additonal tweaks
+
 ## 1) Executive summary
 - The project simulates a small paper company operated by a multi‑agent system that:
   - Parses free‑form customer orders.
@@ -317,3 +320,118 @@ Limitations:
         - uv: `uv add -r requirements.txt`
 
     - run `uv run python project_starter.py` or `python project_starter.py` (inside your .venv if using pip)
+
+
+## 13) UPDATE - Using pydantic-ai
+
+13.1 Summary
+- This is the same project but using **pydantic-ai** SDK instead of smolagents
+- Although using the same openai model (4o-mini), the performance with pydantic-ai agents is dramatically better compared to smolagents ToolCalling Agents
+    - Adherence to guidelines greatly improved for OrderProcessorAgent
+    - Significantly more nuanced / fine-grained BOM extraction (OrderProcessorAgent)
+    - Overall, I explain this difference to how context is managed in pydantic-ai agent architecture.
+- This improved performance allowed to extend the inventory to the full scope of items instead of the 40% coverage used by default in `generate_sample_inventory()`. The system now handles 48 references instead of 18 (smolagents version).
+- There are a few other tweaks to the code slightly improving the workflow:
+    - removed the `allowed_items` check from the `parse_agent_response()` function
+    - adjusted the validation checks step during order processing: The agent has a tendency to report a false success flag although the BOM items are all valid. This is likely due to the fact the agent handles a complex procedure, managing an inventory reference list (still) ambiguous with rules and conditions, allowing to replace some of the requested items by less precise existing references (e.g. 'A4 colored paper' to in 'Colored paper' based on a business rule provided in the prompt). This may still be mis-interpreted as invalid by the agent althought the outcome in the BOM is perfectly ok. So an inconsistency check has been added to the validation step (resolving valid BOM but false success flag).
+- Added tool calls logging to monitor the workflow (pydantic-ai much less verbose than smolagents)
+- Improved formating of the Orchestrator response (new `response_to_customer()` function)
+- State migrated to a pydantic data model for better type safety and validation
+- pydantic-ai offers additional potential for structured outputs and validation. It did not prove necessary to overahaul the OrderProcessorAgent and order parsing step towards structured output as the agent was already adhering to the prompt guidelines.
+- Remaining tools and functions now moved from project_starter.py to utils.py for clarity
+
+
+13.2 Results
+
+- Only 3 orders out of the 20 are not confirmed due to supply not carried by the inventory (see test_results.csv)
+- clearer messages for substitutions and failures
+
+13.3 screenshots
+- full extended inventory references
+
+![order](./assets/pydantic_ai/full_extented_inventory_references.png)
+
+- inconsistency check illustration
+
+![bom](./assets/pydantic_ai/inconsistency_check_illustration.png)
+
+- end-to-end workflow confirmed order
+
+![inventoryagent](./assets/pydantic_ai/end-to-end-workflow_confirmed.png)
+
+- end-to-end workflow not confirmed order
+
+![response](./assets/pydantic_ai/end-to-end-workflow_not_confirmed.png)
+
+- Adjusted prompt to better adherence to guidelines and improved context awareness of pydantic-ai OrderProcessorAgent
+
+```python
+f"""The customer says: "{customer_request}"
+<intructions>
+Your taks is to extract from the order:
+- Each stock item (type, size, grade and finish) and associated quantity
+- the requested date of delivery (%Y-%m-%d isoformat)
+- success: True if the order can be fulfilled, False otherwise
+- comment: brief justification on changes or unavailabilities
+
+Hint: preliminary analysis says the customer asks for {count} stock items and quantities of {quantities}.
+</intructions>
+
+<Process>
+- Analyze the order carefully and extract each stock item. One requested stock item can be extracted only once.
+- For consistence, use the name of the corresponding stock item in the valid inventory references {state.available_items}
+- If one stock item cannot be found, use a reasonably equivalent replacement of similar type in the available inventory references.
+- If one stock item cannot be found or replaced, report label as-is in the BOM, with success False, otherwise success is True (all items can be supplied).
+- summarize in the comment section the replacement(s) made and the unavailable item(s).
+</Process>
+
+<rules>
+- References with a finish but no size are available in all sizes (e.g. Glossy paper reference is available in A4, A3 or A5).
+- References are available in different colors unless mentionned (e.g. Poster paper is available in various colors).
+</rules>
+
+<Response>
+Respond using enumeration stock item name:quantity, stock item name:quantity,...requested delivery date, comment and success (True or False).
+
+stock item name:quantity,
+stock item name:quantity,
+[...]
+delivery date: requested date,
+sucess: true/false,
+comment: short comment informing about alternative or non existing stock item, leave empty otherwise
+</Response>
+
+<examples>
+Order:
+"I would like to place a large order for various types of paper supplies for our upcoming exhibition. We need the 
+following items:
+- 500 sheets of glossy A4 paper
+- 1000 sheets of matte A3 paper
+- 300 poster boards (24" x 36")
+- 200 sheets of heavyweight cardstock
+We need these supplies delivered by April 15, 2025. Thank you. (Date of request: 2025-04-07)"
+Output:
+Glossy paper: 500, Matte paper: 1000, Large poster paper (24x36 inches): 300, 250 gsm cardstock: 200, delivery date:2025-04-15, success:true, comment: Glossy paper is available in A4, Matte paper in A3, our 250 gsm cardstock corresponds to the heavyweight requirement.
+-----------
+Order:"
+I would like to place an order for the following paper supplies for the reception: 
+- 200 sheets of A4 white printer paper
+- 100 sheets of A3 glossy paper
+- 50 packets of 100% recycled kraft paper envelopes
+I need these supplies delivered by April 10, 2025. Thank you. (Date of request: 2025-04-07)"
+Output:
+A4 paper: 200, Glossy paper: 100, 100% recycled kraft paper envelopes: 50, delivery date:2025-04-10, success:false, comment: We can replace A4 white printer paper with simple A4 paper but we do not have recycled kraft paper envelopes, only plain envelopes.
+</examples>"""
+```
+
+13.3 updated code
+
+- See updated code and results in pydantic_ai folder
+
+
+
+
+
+
+
+
