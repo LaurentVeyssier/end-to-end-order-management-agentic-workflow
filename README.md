@@ -1,9 +1,9 @@
 # README — Beaver Multi‑Agent Project
 
-Final project of the Multi-agent Systems course, part of [Udacity Agentic AI Nanodegree](https://www.udacity.com/course/agentic-ai--nd900). The project implements an end-to-end order management system handled by multiple specialized worker agents and an orchestrator agent.
+Final project from the Multi-agent Systems course, part of [Udacity Agentic AI Nanodegree](https://www.udacity.com/course/agentic-ai--nd900). The project implements an end-to-end order management system handled by multiple specialized worker agents and an orchestrator agent using smolagents python library.
 
 UPDATE: 
-- improved agentic workflow using pydantic-ai SDK in place of smolagents + additonal tweaks
+- improved agentic workflow using pydantic-ai SDK in place of smolagents + additional tweaks
 
 ## 1) Executive summary
 - The project simulates a small paper company operated by a multi‑agent system that:
@@ -221,7 +221,7 @@ Limitations:
 - Improved definitions of inventory references
   - Improved inventory reference labels with product types, sizes, finishes and grades.
   e.g. "A4 glossy paper" or "A4 printer paper", "recycled kraft paper envelopes"
-  - clearer princing for different sizes
+  - clearer pricing for different sizes
   e.g glossy paper has a unique price independent of the size
 
 - Improved parsing of customer orders (most critical point of the workflow)
@@ -353,7 +353,7 @@ Limitations:
 ```python
 f"""The customer says: "{customer_request}"
 <intructions>
-Your taks is to extract from the order:
+Your tasks is to extract from the order:
 - Each stock item (type, size, grade and finish) and associated quantity
 - the requested date of delivery (%Y-%m-%d isoformat)
 - success: True if the order can be fulfilled, False otherwise
