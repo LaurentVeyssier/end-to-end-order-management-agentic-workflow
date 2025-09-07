@@ -1,21 +1,6 @@
 # README — Beaver Multi‑Agent Project
 
-## Report plan
-- Executive summary
-- Project structure
-- Agent workflow and architecture
-  - Diagram and roles
-  - Decision-making rationale
-- State management (critical)
-- Data models
-  - Dataclass in use
-  - Pydantic models recommended
-- Validation steps and retry loop (OrderProcessorAgent)
-- Tools and functions (commentary)
-- Evaluation results (from test_results.csv)
-  - Strengths observed
-- Improvements and next steps
-- How to run (Windows, UV)
+Final project of the Multi-agent Systems course, part of [Udacity Agentic AI Nanodegree](https://www.udacity.com/course/agentic-ai--nd900). The project implements an end-to-end order management system handled by multiple specialized worker agents and an orchestrator agent.
 
 UPDATE: 
 - improved agentic workflow using pydantic-ai SDK in place of smolagents + additonal tweaks
