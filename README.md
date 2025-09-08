@@ -1,4 +1,4 @@
-# README — Beaver Multi‑Agent Project
+# Beaver Multi‑Agent Project
 
 Final project from the Multi-agent Systems course, part of [Udacity Agentic AI Nanodegree](https://www.udacity.com/course/agentic-ai--nd900). The project implements an end-to-end order management system handled by multiple specialized worker agents and an orchestrator agent using smolagents python library.
 
