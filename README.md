@@ -2,8 +2,20 @@
 
 Final project from the Multi-agent Systems course, part of [Udacity Agentic AI Nanodegree](https://www.udacity.com/course/agentic-ai--nd900). The project implements an end-to-end order management system handled by multiple specialized worker agents and an orchestrator agent using smolagents python library.
 
-UPDATE: 
+**UPDATE 1**: Replace files with pydantic-ai version in the `pydantic-ai-v1/` folder
 - improved agentic workflow using pydantic-ai SDK in place of smolagents + additional tweaks
+- see change details in chapter 13 of this README
+
+
+**UPDATE 2**: Replace files with those in the `pydantic_ai_v2/` folder
+- I extended the pydantic_ai version (see UPDATE 1 above) and implemented these additional improvements:
+  - segmented the orchestrator into distinct methods corresponding to each agent. This improves code organization, modularity and readability. In addition to `orchestrator.analyze_request` method, you now have `orchestrator.process_inventory`, `orchestrator.process_sales`, `orchestrator.confirm_order`, `orchestrator.final_response` methods. These methods supports the agentic workflow and are called in `run_test_scenarios()`.
+  - Added a `RouterAgent` to dispatch both orders and general inquiries to the appropriate agent. In addition to the customer orders, general inquiries are now also handled by the system.
+  - Added an `AdvisorAgent` to answer inquiries about Beaver financials, cash balance, sales history, past quotations, discounts, etc.
+  - I added several general inquiry samples to the test set. Complete results can be found in the test_results.csv file in the `pydantic_ai_v2/` folder.
+  - fixed an issue in the `search_quote_history` tool. The tool was not returning the expected results.
+  - completed the State class with additional information
+  
 
 ## 1) Executive summary
 - The project simulates a small paper company operated by a multi‑agent system that:
@@ -307,7 +319,7 @@ Limitations:
     - run `uv run python project_starter.py` or `python project_starter.py` (inside your .venv if using pip)
 
 
-## 13) UPDATE - Using pydantic-ai
+## 13) UPDATE V1 - Using pydantic-ai
 
 13.1 Summary
 - This is the same project but using **pydantic-ai** SDK instead of smolagents
@@ -409,9 +421,9 @@ A4 paper: 200, Glossy paper: 100, 100% recycled kraft paper envelopes: 50, deliv
 </examples>"""
 ```
 
-13.3 updated code
+13.3 updated code using pydantic_ai SDK and additional agentic features
 
-- See updated code and results in pydantic_ai folder
+- See updated code files and results in `pydantic_ai_v1/` and `pydantic_ai_v2/` folders
 
 
 
