@@ -337,7 +337,7 @@ Limitations:
 - There are a few other tweaks to the code slightly improving the workflow:
     - removed the `allowed_items` check from the `parse_agent_response()` function
     - adjusted the validation checks step during order processing: The agent has a tendency to report a false success flag although the BOM items are all valid. This is likely due to the fact the agent handles a complex procedure, managing an inventory reference list (still) ambiguous with rules and conditions, allowing to replace some of the requested items by less precise existing references (e.g. 'A4 colored paper' to in 'Colored paper' based on a business rule provided in the prompt). This may still be mis-interpreted as invalid by the agent althought the outcome in the BOM is perfectly ok. So an inconsistency check has been added to the validation step (resolving valid BOM but false success flag).
-- Added tool calls logging to monitor the workflow (pydantic-ai much less verbose than smolagents)
+- Added tool calls logging to monitor the workflow and reasoning traces (pydantic-ai much less verbose than smolagents)
 - Improved formating of the Orchestrator response (new `response_to_customer()` function)
 - State migrated to a pydantic data model for better type safety and validation
 - pydantic-ai offers additional potential for structured outputs and validation. It did not prove necessary to overahaul the OrderProcessorAgent and order parsing step towards structured output as the agent was already adhering to the prompt guidelines.
