@@ -141,7 +141,7 @@ Why it matters:
 - helpers.State: lightweight, mutable central state. Pros: simple and fast; Cons: no runtime validation.
 
 ### 5.2 Pydantic models
-I was not able to use for structured ouput of agents (issue with final_response method not allowing or the agent not being able to return a pydantic model). Pydantic models would strengthen validation:
+I was not able to use structured output with smolagents (issue with final_response method not allowing the approach, with the agent not being able to return a pydantic model). pydantic-ai implementation corrects this. Pydantic models would strengthen validation:
 
 - ParsedOrder
   - `success: bool`
