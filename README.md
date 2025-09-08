@@ -17,7 +17,7 @@ Final project from the Multi-agent Systems course, part of [Udacity Agentic AI N
     - *can i get a discount on my order?*
     - *which past orders got a discount ? summarize the result in a table.*
     
-  - Added an `AdvisorAgent` to answer inquiries about Beaver financials, cash balance, sales history, past quotations, discounts, etc.
+  - Added an `AdvisorAgent` to answer inquiries about Beaver financials, cash balance, sales history, past quotations, discounts, etc. (assumes for management use only)
   - I added several general inquiry samples to the test set. Complete results can be found in the test_results.csv file in the `pydantic_ai_v2/` folder.
   - fixed an issue in the `search_quote_history` tool. The tool was not returning the expected results.
   - completed the State class with additional information
