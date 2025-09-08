@@ -10,7 +10,13 @@ Final project from the Multi-agent Systems course, part of [Udacity Agentic AI N
 **UPDATE 2**: Replace files with those in the `pydantic_ai_v2/` folder
 - I extended the pydantic_ai version (see UPDATE 1 above) and implemented these additional improvements:
   - segmented the orchestrator into distinct methods corresponding to each agent. This improves code organization, modularity and readability. In addition to `orchestrator.analyze_request` method, you now have `orchestrator.process_inventory`, `orchestrator.process_sales`, `orchestrator.confirm_order`, `orchestrator.final_response` methods. These methods supports the agentic workflow and are called in `run_test_scenarios()`.
-  - Added a `RouterAgent` to dispatch both orders and general inquiries to the appropriate agent. In addition to the customer orders, general inquiries are now also handled by the system.
+  - Added a `RouterAgent` to dispatch both orders and general inquiries to the appropriate agent. General inquiries are now also handled by the system in addition to customer orders. Typical inquiries:
+    - *what is the price of a sheet of A4 glossy paper?*
+    - *which paper items do you sell?*
+    - *do you have any A4 glossy paper in stock?*
+    - *can i get a discount on my order?*
+    - *which past orders got a discount ? summarize the result in a table.*
+    
   - Added an `AdvisorAgent` to answer inquiries about Beaver financials, cash balance, sales history, past quotations, discounts, etc.
   - I added several general inquiry samples to the test set. Complete results can be found in the test_results.csv file in the `pydantic_ai_v2/` folder.
   - fixed an issue in the `search_quote_history` tool. The tool was not returning the expected results.
